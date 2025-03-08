@@ -33,9 +33,12 @@ function Login() {
     axios.post('https://dummyjson.com/auth/login', payload)
     .then(res => {
       // console.log(loginMessage)
-      console.log(res)
+      console.log(res.data.accessToken)
+      const token = res.data.accessToken
       setError("Login Berhasil")
       console.log(error.length)
+
+      localStorage.setItem("accessToken", token)
 
       setTimeout(()=> {
         navigate("/")

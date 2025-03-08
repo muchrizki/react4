@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import MenuDetails from "./pages/MenuDetails"
 import Register from "./pages/Register"
+import ProtectedRoute from "./routes/ProtectedRoute"
 
 
 function App() {
@@ -18,7 +19,12 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element=
+        { 
+          <ProtectedRoute>
+          <Home/>
+          </ProtectedRoute>
+        }/>
         <Route path="/login" element={<Login/>} />
         <Route path="/menu/:id" element={<MenuDetails/>} />
         <Route path="/register" element={<Register />} />
