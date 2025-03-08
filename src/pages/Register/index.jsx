@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Navbar from "../../components/Navbar"
 
 export default function Register () {
     const [username, setUsername] = useState("")
@@ -31,6 +32,7 @@ export default function Register () {
 
     return (
         <>
+            <Navbar />
             <h3>Register Form</h3>
             <div  style={{  display:'flex', flexDirection: 'column', gap: '20px', width: 'fit-content' }}>
 

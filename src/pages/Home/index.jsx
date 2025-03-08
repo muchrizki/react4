@@ -14,10 +14,11 @@ function Home() {
     // const handleNav = () => setSidebar(!sidebar)
   
     const [menu, setMenu] = useState([])
+    const [search, setSearch] = useState("")
     const [users, setUsers] = useState([])
     const getMenu = () => {
   
-      axios.get("https://api.mudoapi.site/menus")
+      axios.get(`https://api.mudoapi.site/menus?name=${search}`)
       .then(res => setMenu(res.data.data.Data))
       .catch(err => console.log(err))
   
@@ -30,6 +31,7 @@ function Home() {
     }
     //useEffect adalah lifecycle untuk memanggil/menjalankan function ketika pertama kali di render
     useEffect(() => {getMenu(); getUsers()}, [])
+    useEffect(() => getMenu(), [search])
     // console.log(menu)
   
     return (
@@ -37,8 +39,10 @@ function Home() {
         {/* {!sidebar && <p onClick={handleNav} style={{ cursor: 'pointer' }}>|||</p>}
         {sidebar &&  <Sidebar menuNav = {menuNav} handleNav = {handleNav}/>} */}
         <Navbar />
-        <UserSection users = {users} />
+        {/* <UserSection users = {users} /> */}
         
+        <input type="text" style={{  width: '200px' }}  onChange={(e) => setSearch(e.target.value)} />
+        {/* <button>Search</button> */}
         {
           menu.map(item => (
             <div key={item.id} style={{ marginBottom: "40px" }}>

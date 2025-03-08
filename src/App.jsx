@@ -9,6 +9,7 @@ import Login from "./pages/Login"
 import MenuDetails from "./pages/MenuDetails"
 import Register from "./pages/Register"
 import ProtectedRoute from "./routes/ProtectedRoute"
+import Profile from "./pages/Profile"
 
 
 function App() {
@@ -22,12 +23,19 @@ function App() {
         <Route path="/" element=
         { 
           <ProtectedRoute>
-          <Home/>
+            <Home/>
           </ProtectedRoute>
         }/>
+
         <Route path="/login" element={<Login/>} />
         <Route path="/menu/:id" element={<MenuDetails/>} />
         <Route path="/register" element={<Register />} />
+        
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }/>
 
       </Routes>
 

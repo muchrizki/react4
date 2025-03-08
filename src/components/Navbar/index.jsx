@@ -5,17 +5,20 @@ function Navbar() {
   const navigate = useNavigate('/')
 
   const handleLogout =() => {
-    localStorage.removeItem('accessToken')
+    //hit api logout to make expired auth
+    localStorage.clear()
     setTimeout(() => navigate('/login'), 2000)
   }
 
+  const token = localStorage.getItem('accessToken')
 
   return (
     <div style={{ display: "flex", gap: "20px", marginBottom: '50px', cursor: 'pointer' }}>
 
         <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
-        <Link onClick={handleLogout}>Logout</Link>
+        {token && <Link onClick={handleLogout}>Logout</Link>}
+        {token && <Link to="/profile">Profile</Link>}
 
     </div>
   )
