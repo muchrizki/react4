@@ -16,7 +16,7 @@ function Navbar() {
     <div style={{ display: "flex", gap: "20px", marginBottom: '50px', cursor: 'pointer' }}>
 
         <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        {!token && <Link to="/login">Login</Link>}
         {token && <Link onClick={handleLogout}>Logout</Link>}
         {token && <Link to="/profile">Profile</Link>}
 

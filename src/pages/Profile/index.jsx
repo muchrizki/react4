@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Navbar from "../../components/Navbar"
+import useUser from "../../hooks/useUser"
 
 
 export default function Profile () {
 
     const [ profile, setProfile] = useState({})
+    const { users, getUsers } = useUser()
 
     const getProfile =  async() => {
 
@@ -18,7 +20,7 @@ export default function Profile () {
 
         try {
             const response = await axios.get(`https://dummyjson.com/auth/me`, config)
-            console.log(response) 
+            // console.log(response) 
             setProfile(response.data)
         } catch(error) {
             console.log("err", error.response)
@@ -28,6 +30,7 @@ export default function Profile () {
 
     useEffect(() => {
         getProfile()
+        getUsers()
     }, [])
 
     // console.log(profile)
@@ -37,6 +40,9 @@ export default function Profile () {
             <h3>{profile.username}</h3>
             <img src={profile.image} alt="" />
             <p>{profile.gender}</p>
+            <br />
+
+            {users.map((user) => <p key={user.id}>{user.email}</p>)}
         </>
     )
 }
